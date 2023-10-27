@@ -9,126 +9,105 @@ namespace practice5
 {
     public class Class1
     {
-
-        public void TakeTheItem(int Position, int SizeType)
-        {
-            switch (SizeType)
-            {
-                case 0:
-                    WriteLine("Critical Error, return the app");
-                    break;
-                case 1:
-                    Kross(Position);
-                    break;
-                case 2:
-                    Shmot(Position);
-                    break;
-                case 3:
-                    Shmot(Position);
-                    break;
-            }
-        }
-
-        private void Kross(int Position)
-        {
-            public struct Card
+        public struct Card
         {
             public string Key;
             public int Value;
 
         }
-        int SizeIndex = 1;
-        private static Card[] Cards = new Card[]
+        private static Card[] Products = new Card[]
         {
-
-            new Card() { Key = "7", Value = 7 },
-            new Card() { Key = "8", Value = 8 },
-            new Card() { Key = "9", Value = 9 },
-            new Card() { Key = "10",Value = 10 },
-            new Card() { Key = "J", Value = 1 },
-            new Card() { Key = "Q", Value = 1 },
-            new Card() { Key = "K", Value = 1 },
-            new Card() { Key = "A", Value = 1 }
+            new Card() { Key = "Кроссовки NIKE АIR FORCE", Value = 12500},
+            new Card() { Key = "Ботинки TIMBERLAND", Value = 28000},
+            new Card() { Key = "Футболка HUGO BOSS", Value = 7000},
+            new Card() { Key = "Худи CALVIN KLEIN", Value = 18000},
+            new Card() { Key = "Худи LACOSTA", Value = 16000},
+            new Card() { Key = "Джинсы ARMANI", Value = 12000},
+            new Card() { Key = "Шорты GUCCI", Value = 56000},
+            new Card() { Key = "Штаны GLORIA JEANS", Value = 4800}
         };
-    
-            List<int> sizes = new List<int>() {36,37,38,39,40,41,42,43};
+
+        public void TakeTheItem(int cur, int SizeType)
+        {
+            switch (SizeType)
+            {
+                case 0 : WriteLine("Critical Error, return the app"); break;
+                case 1 : Kross(cur); break;
+                case 2 : Top(cur); break;
+                case 3 : Pants(cur); break;
+            }
+        }
+
+        private void Kross(int cur)
+        {
+            int SizeIndex = 1;
+            List<int> sizes = new List<int>() {35,36,37,38,39,40,41,42};
             while (true)
             {
                 Clear();
-                WriteLine("Размеры");
-                WriteLine(" 34");
-                WriteLine(" 35");
-                WriteLine(" 36");
-                WriteLine(" 37");
-                WriteLine(" 38");
-                WriteLine(" 39");
-                WriteLine(" 40");
-                WriteLine(" 41");
-                WriteLine(" 42");
+                WriteLine("Размеры RU\n 35\n 36\n 37\n 38\n 39\n 40\n 41\n 42\n\n Назад");
                 SetCursorPosition(0, SizeIndex);
                 WriteLine(">");
                 ConsoleKeyInfo sss = ReadKey(true);
                 switch (sss.Key)
                 {
-                    case ConsoleKey.UpArrow:
-                        if (SizeIndex == 1) SizeIndex = 9;
-                        SizeIndex--;
-                        break;
-                    case ConsoleKey.DownArrow:
-                        if (SizeIndex == 8) SizeIndex = 0;
-                        SizeIndex++;
-                        break;
-                    case ConsoleKey.Enter:
-                        Noting(NamesPrice.Values.ElementAt(Position).Key,  sizes[SizeIndex], NamesPrice.Values.ElementAt(Position).Value);
-                        break;
+                    case ConsoleKey.UpArrow : if (SizeIndex == 1) SizeIndex = 11; SizeIndex--; break; 
+                    case ConsoleKey.DownArrow : if (SizeIndex == 10) SizeIndex = 0; SizeIndex++; break; 
+                    case ConsoleKey.Enter: 
+                        if(SizeIndex >8) Program.Main();                      
+                        else Noting(Products.ElementAt(cur).Key, sizes[SizeIndex-1].ToString(), Products.ElementAt(cur).Value); break;
+                       
+                        
                 }
             }
         }
-        private void Shmot(int Pos)
+
+        private void Top(int cur)
         {
-            int raa = 1;
-            List<string> Names = new List<string>() { "Pandora", "Fendi", "Dolce Gabbana" };
-        
+            int SizeIndex = 1;
+            List<string> sizes = new List<string>() {"XS", "S", "M", "L", "XL"};
             while (true)
             {
                 Clear();
-                WriteLine("Размеры");
-                WriteLine(" 34");
-                WriteLine(" 35");
-                WriteLine(" 36");
-                WriteLine(" 37");
-                WriteLine(" 38");
-                WriteLine(" 39");
-                WriteLine(" 40");
-                WriteLine(" 41");
-                WriteLine(" 42");
-                SetCursorPosition(0, raa);
+                WriteLine("Размеры в наличии:\n XS\n S\n M\n L\n XL\n Назад");
+                SetCursorPosition(0, SizeIndex);
                 WriteLine(">");
                 ConsoleKeyInfo sss = ReadKey(true);
                 switch (sss.Key)
                 {
-                    case ConsoleKey.UpArrow:
-                        if (raa == 1) raa = 9;
-                        raa--;
-                        break;
-                    case ConsoleKey.DownArrow:
-                        if (raa == 8) raa = 0;
-                        raa++;
-                        break;
-                    case ConsoleKey.Enter:
-
-                        break;
+                    case ConsoleKey.UpArrow : if (SizeIndex == 1) SizeIndex = 6; SizeIndex--; break;
+                    case ConsoleKey.DownArrow : if (SizeIndex == 6) SizeIndex = 1; SizeIndex++; break;
+                    case ConsoleKey.Enter : Noting(Products.ElementAt(cur).Key, sizes[SizeIndex].ToString(), Products.ElementAt(cur).Value); break;
+                }
+            }
+        }
+        private void Pants(int cur)
+        {
+            int SizeIndex = 1;
+            List<int> sizes = new List<int>() { 160, 165, 170, 175, 180, 185, 190};
+            while (true)
+            {
+                Clear();
+                WriteLine("Размеры в наличии:\n 160\n 165\n 170\n 175\n 180\n 185\n 190");
+                SetCursorPosition(0, SizeIndex);
+                WriteLine(">");
+                ConsoleKeyInfo sss = ReadKey(true);
+                switch (sss.Key)
+                {
+                    case ConsoleKey.UpArrow : if (SizeIndex == 1) SizeIndex = 7; SizeIndex--; break;
+                    case ConsoleKey.DownArrow : if (SizeIndex == 7) SizeIndex = 1; SizeIndex++; break;
+                    case ConsoleKey.Enter : Noting(Products.ElementAt(cur).Key, sizes[SizeIndex].ToString(), Products.ElementAt(cur).Value); break;
                 }
             }
         }
         private void Noting(string Position, string Size, int Price )
         {
-            Class2 bbb = new Class2();
-            bbb.Position = Position;
-            bbb.Size = Size;
-
-            
-
+            Class2 Instance = new Class2();
+            Instance.Position = Position;
+            Instance.Size = Size;
+            Instance.Price = Price;
+            Saving.Corzina.Add(Instance);
+            Program.Main();
         }
     }
 }
