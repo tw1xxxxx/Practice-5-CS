@@ -54,10 +54,10 @@ namespace practice5
                     case ConsoleKey.UpArrow : if (SizeIndex == 1) SizeIndex = 11; SizeIndex--; break; 
                     case ConsoleKey.DownArrow : if (SizeIndex == 10) SizeIndex = 0; SizeIndex++; break; 
                     case ConsoleKey.Enter: 
-                        if(SizeIndex >8) Program.Main();                      
-                        else Noting(Products.ElementAt(cur).Key, sizes[SizeIndex-1].ToString(), Products.ElementAt(cur).Value); break;
-                       
-                        
+                        if (SizeIndex < 10) Noting(Products.ElementAt(cur).Key, sizes[SizeIndex-1].ToString(), Products.ElementAt(cur).Value);
+                        else Program.Main(); break;
+
+
                 }
             }
         }
@@ -69,15 +69,17 @@ namespace practice5
             while (true)
             {
                 Clear();
-                WriteLine("Размеры в наличии:\n XS\n S\n M\n L\n XL\n Назад");
+                WriteLine("Размеры в наличии:\n XS\n S\n M\n L\n XL\n\n Назад");
                 SetCursorPosition(0, SizeIndex);
                 WriteLine(">");
                 ConsoleKeyInfo sss = ReadKey(true);
                 switch (sss.Key)
                 {
-                    case ConsoleKey.UpArrow : if (SizeIndex == 1) SizeIndex = 6; SizeIndex--; break;
-                    case ConsoleKey.DownArrow : if (SizeIndex == 6) SizeIndex = 1; SizeIndex++; break;
-                    case ConsoleKey.Enter : Noting(Products.ElementAt(cur).Key, sizes[SizeIndex].ToString(), Products.ElementAt(cur).Value); break;
+                    case ConsoleKey.UpArrow : if (SizeIndex == 1) SizeIndex = 8; SizeIndex--; break;
+                    case ConsoleKey.DownArrow : if (SizeIndex == 8) SizeIndex = 1; SizeIndex++; break;
+                    case ConsoleKey.Enter : 
+                        if (SizeIndex < 7) Noting(Products.ElementAt(cur).Key, sizes[SizeIndex - 1].ToString(), Products.ElementAt(cur).Value); 
+                        else Program.Main(); break;
                 }
             }
         }
@@ -88,15 +90,17 @@ namespace practice5
             while (true)
             {
                 Clear();
-                WriteLine("Размеры в наличии:\n 160\n 165\n 170\n 175\n 180\n 185\n 190");
+                WriteLine("Размеры в наличии:\n 160\n 165\n 170\n 175\n 180\n 185\n 190\n\n Назад");
                 SetCursorPosition(0, SizeIndex);
                 WriteLine(">");
                 ConsoleKeyInfo sss = ReadKey(true);
                 switch (sss.Key)
                 {
-                    case ConsoleKey.UpArrow : if (SizeIndex == 1) SizeIndex = 7; SizeIndex--; break;
-                    case ConsoleKey.DownArrow : if (SizeIndex == 7) SizeIndex = 1; SizeIndex++; break;
-                    case ConsoleKey.Enter : Noting(Products.ElementAt(cur).Key, sizes[SizeIndex].ToString(), Products.ElementAt(cur).Value); break;
+                    case ConsoleKey.UpArrow : if (SizeIndex == 1) SizeIndex = 10; SizeIndex--; break;
+                    case ConsoleKey.DownArrow : if (SizeIndex == 9) SizeIndex = 0; SizeIndex++; break;
+                    case ConsoleKey.Enter :
+                        if (SizeIndex < 9) Noting(Products.ElementAt(cur - 1).Key, sizes[SizeIndex - 1].ToString(), Products.ElementAt(cur - 1).Value);
+                        else Program.Main(); break;
                 }
             }
         }
